@@ -22,16 +22,20 @@
 </template>
 
 <script>
+import useStorage from "@/composables/useStorage";
 import useDocument from "@/composables/useDocument";
 import getDocument from "@/composables/getDocument";
 import getUser from "@/composables/getUser";
 import { computed } from "@vue/runtime-core";
+import { useRouter } from "vue-router";
 export default {
 	props: ["id"],
 	setup(props) {
 		const { error, document: playlist } = getDocument("playlists", props.id);
 		const { user } = getUser();
 		const { deleteDoc } = useDocument("playlists", props.id);
+		const { deleteImage } = useStorage();
+		const router = useRouter();
 
 		const ownership = computed(() => {
 			return (
@@ -40,7 +44,9 @@ export default {
 		});
 
 		const handleDelete = async () => {
+			await deleteImage(playlist.value.filePath);
 			await deleteDoc();
+			router.push({ name: "Home" });
 		};
 		return { error, playlist, ownership, handleDelete };
 	},
