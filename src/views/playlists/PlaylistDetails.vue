@@ -11,7 +11,6 @@
 			<h2>{{ playlist.title }}</h2>
 			<p class="username">Created by: {{ playlist.userName }}</p>
 			<p class="description">{{ playlist.description }}</p>
-			<!-- v-if="ownership" -->
 			<button v-if="ownership" @click="handleDelete">Delete Playlist</button>
 		</div>
 
