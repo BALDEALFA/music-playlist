@@ -2,11 +2,16 @@
 	<div class="navbar">
 		<nav>
 			<img src="@/assets/musicPlist.png" alt="Music PlayList" />
-			<h1><router-link :to="{ name: 'Home' }"> Music PlayList</router-link></h1>
+			<h1>
+				<router-link :to="{ name: 'Home' }"> Music Playlists</router-link>
+			</h1>
 			<div class="links">
 				<div v-if="user">
-					<router-link :to="{ name: 'CreatePlaylist' }">
-						Create Playlist</router-link
+					<router-link :to="{ name: 'CreatePlaylist' }"
+						>Create Playlist</router-link
+					>
+					<router-link :to="{ name: 'UserPlaylists' }">
+						My Playlist</router-link
 					>
 					<button @click="handleClick">Logout</button>
 				</div>
